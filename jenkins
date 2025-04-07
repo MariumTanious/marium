@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // تعديل اسم الفرع إلى 'main'
+            
                 git url: 'https://github.com/MariumTanious/marium.git', branch: 'main', credentialsId: 'jenkins-github-credentials'
             }
         }
