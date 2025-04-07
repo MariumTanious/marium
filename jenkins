@@ -4,12 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://git.your-repo-url.git'
+                // تعديل رابط المستودع والفرع في الأمر git
+                git url: 'https://github.com/MariumTanious/marium.git', branch: 'main', credentialsId: 'your-credentials-id'
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
+                    // بناء الصورة باستخدام Docker
                     docker.build("my-image")
                 }
             }
@@ -17,6 +19,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
+                    // دفع الصورة إلى الـ Docker Registry
                     docker.withRegistry('https://your-registry-url', 'your-credentials-id') {
                         docker.push("my-image")
                     }
